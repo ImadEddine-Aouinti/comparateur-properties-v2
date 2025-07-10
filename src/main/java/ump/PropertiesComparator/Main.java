@@ -11,14 +11,14 @@ public class Main {
     public static void main(String[] args) {
         // Création de données de test simulant deux fichiers .properties
         Map<String, String> props1 = new HashMap<>();
-        props1.put("key1", "value1");
-        props1.put("key2", "value2");
-        props1.put("key3", "value3");
+        props1.put("key1", "A");
+        props1.put("key2", "B");
+        props1.put("key3", "C");
 
         Map<String, String> props2 = new HashMap<>();
-        props2.put("key1", "value1");
-        props2.put("key2", "different_value");
-        props2.put("key4", "value4");
+        props2.put("key1", "A");
+        props2.put("key2", "X");
+        props2.put("key4", "D");
 
         // Initialisation de la factory
         ComparatorFactory factory = new ComparatorFactory();
