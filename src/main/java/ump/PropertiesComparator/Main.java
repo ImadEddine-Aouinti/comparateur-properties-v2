@@ -34,7 +34,7 @@ public class Main {
             ComparisonResult result = comparator.compare(props1, props2, "file1.properties", "file2.properties");
 
             // Obtention du formateur pour JSON
-            ReportFormatter formatter = reportFactory.createFormat(ReportFactory.FormatType.HTML);
+            ReportFormatter formatter = reportFactory.createFormat(ReportFactory.FormatType.XML);
 
             // Formatage et affichage du rapport
             String report = formatter.format(result);
