@@ -1,7 +1,6 @@
 package ump.PropertiesComparator.comparator;
 
-import com.sun.net.httpserver.SimpleFileServer;
-import ump.PropertiesComparator.comparator.impl.simpleDiff;
+import ump.PropertiesComparator.comparator.impl.SimpleDiff;
 
 public class ComparatorFactory {
     public enum ComparisonType {
@@ -13,7 +12,7 @@ public class ComparatorFactory {
         }
         switch(type){
             case SIMPLE :
-                return new simpleDiff();
+                return new SimpleDiff();
             default:
                 throw new IllegalArgumentException("Type de comparaison inconnu : " + type);
         }
