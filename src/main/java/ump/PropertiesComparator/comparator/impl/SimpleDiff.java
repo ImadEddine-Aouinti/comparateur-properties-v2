@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class simpleDiff implements PropertiesComparator {
+public class SimpleDiff implements PropertiesComparator {
     @Override
     public ComparisonResult compare(Map<String, String> props1, Map<String, String> props2, String file1, String file2) {
         Map<String, String> diff = new HashMap<>();
