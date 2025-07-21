@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.*;
 
 public class FileHistory implements PropertiesHistory {
-    private static final String HISTORY_FILE = "history.json";
+    private static final String HISTORY_FILE = "C:\\Users\\Lenovo IDEAPAD Slim\\Desktop\\stage_SQLI\\history\\history.json";
     private final ObjectMapper mapper ;
     private List<ComparisonMetadata> history ;
 

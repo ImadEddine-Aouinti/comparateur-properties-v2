@@ -19,7 +19,7 @@ public class Main {
         try {
             ComparatorManager facade = new ComparatorManager();
 
-            String res = facade.resultat(file1,file2,ComparatorFactory.ComparisonType.SIMPLE,ReportFactory.FormatType.XML);
+            String res = facade.resultat(file1,file2,ComparatorFactory.ComparisonType.SIMPLE,ReportFactory.FormatType.HTML);
             System.out.println(res);
         } catch (IllegalArgumentException e) {
             System.err.println("Erreur: " + e.getMessage());
