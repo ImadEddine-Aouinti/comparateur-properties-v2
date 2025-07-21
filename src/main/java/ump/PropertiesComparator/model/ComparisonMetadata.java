@@ -1,5 +1,6 @@
 package ump.PropertiesComparator.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -8,12 +9,12 @@ public class ComparisonMetadata implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("comparisonId")
-    private String idComparaison;
+    private String comparisonId;
 
-    @JsonProperty("sourceFile")
+    @JsonProperty("File1")
     private String file1;
 
-    @JsonProperty("targetFile")
+    @JsonProperty("File2")
     private String file2;
 
     @JsonProperty("comparatorType")
@@ -28,12 +29,16 @@ public class ComparisonMetadata implements Serializable {
     @JsonProperty("result")
     private ComparisonResult result;
 
-    public ComparisonMetadata() {
-    }
-
-    public ComparisonMetadata(String idComparaison, String file1, String file2, String comparatorType,
-                              String formatType, LocalDateTime timestamp, ComparisonResult result) {
-        this.idComparaison = idComparaison;
+    @JsonCreator
+    public ComparisonMetadata(
+            @JsonProperty("comparisonId") String comparisonId,
+            @JsonProperty("File1") String file1,
+            @JsonProperty("File2") String file2,
+            @JsonProperty("comparatorType") String comparatorType,
+            @JsonProperty("formatType") String formatType,
+            @JsonProperty("timestamp") LocalDateTime timestamp,
+            @JsonProperty("result") ComparisonResult result) {
+        this.comparisonId = comparisonId;
         this.file1 = file1;
         this.file2 = file2;
         this.comparatorType = comparatorType;
@@ -42,66 +47,38 @@ public class ComparisonMetadata implements Serializable {
         this.result = result;
     }
 
-    public String getIdComparaison() {
-        return idComparaison;
-    }
-
-    public void setIdComparaison(String idComparaison) {
-        this.idComparaison = idComparaison;
+    public String getComparisonId() {
+        return comparisonId;
     }
 
     public String getFile1() {
         return file1;
     }
 
-    public void setFile1(String file1) {
-        this.file1 = file1;
-    }
-
     public String getFile2() {
         return file2;
-    }
-
-    public void setFile2(String file2) {
-        this.file2 = file2;
     }
 
     public String getComparatorType() {
         return comparatorType;
     }
 
-    public void setComparatorType(String comparatorType) {
-        this.comparatorType = comparatorType;
-    }
-
     public String getFormatType() {
         return formatType;
-    }
-
-    public void setFormatType(String formatType) {
-        this.formatType = formatType;
     }
 
     public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public ComparisonResult getResult() {
         return result;
-    }
-
-    public void setResult(ComparisonResult result) {
-        this.result = result;
     }
 
     @Override
     public String toString() {
         return "ComparisonMetadata{" +
-                "idComparaison='" + idComparaison + '\'' +
+                "comparisonId='" + comparisonId + '\'' +
                 ", file1='" + file1 + '\'' +
                 ", file2='" + file2 + '\'' +
                 ", comparatorType='" + comparatorType + '\'' +
