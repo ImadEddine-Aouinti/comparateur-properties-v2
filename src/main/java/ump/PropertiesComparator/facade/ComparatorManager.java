@@ -37,7 +37,6 @@ public class ComparatorManager {
 
             ComparisonResult resultat = comparator.compare(props1, props2, file1, file2);
 
-            // Sauvegarder les métadonnées dans l'historique
             ComparisonMetadata metadata = new ComparisonMetadata(
                     UUID.randomUUID().toString(),
                     file1,

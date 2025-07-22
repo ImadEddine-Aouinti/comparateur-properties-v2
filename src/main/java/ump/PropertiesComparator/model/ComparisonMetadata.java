@@ -1,6 +1,7 @@
 package ump.PropertiesComparator.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -24,6 +25,7 @@ public class ComparisonMetadata implements Serializable {
     private String formatType;
 
     @JsonProperty("timestamp")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd MMMM yyyy 'à' HH:mm:ss", locale = "fr")
     private LocalDateTime timestamp;
 
     @JsonProperty("result")
