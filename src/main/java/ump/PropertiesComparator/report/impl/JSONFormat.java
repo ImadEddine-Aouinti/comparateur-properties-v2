@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class JSONFormat implements ReportFormatter {
     @Override
     public String format(ComparisonResult result) {
-        String differencesJson = result.getDiff().entrySet().stream()
+        String differencesJson = result.getDifferences().entrySet().stream()
                 .map(entry -> "\"" + entry.getKey() + "\":\"" + entry.getValue() + "\"")
                 .collect(Collectors.joining(","));
 

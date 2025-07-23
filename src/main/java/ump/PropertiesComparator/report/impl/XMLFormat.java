@@ -11,7 +11,7 @@ public class XMLFormat implements ReportFormatter {
         xml.append("<comparator");
         xml.append("<titre>Comparaison entre :").append(result.getFile1()).append(" et ").append(result.getFile2()).append("</titre>\n");
         xml.append("<table>\n<tr>\n<th>Clé</th>\n<th>Différence</th>\n</tr>\n");
-        result.getDiff().forEach((key,diff)->{
+        result.getDifferences().forEach((key,diff)->{
             xml.append("<tr>\n<td>").append(key).append("</td>\n<td>").append(diff).append("</td>\n</tr>\n");
         });
         xml.append("</table>\n");
