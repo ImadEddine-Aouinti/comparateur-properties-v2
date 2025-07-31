@@ -13,7 +13,7 @@ public class HTMLFormat implements ReportFormatter {
         html.append("<h1>Comparaison entre ").append(result.getFile1()).append(" et ").append(result.getFile2()).append("</h1>\n");
         html.append("<table border='1'>\n");
         html.append("<tr><th>Clé</th><th>Différence</th></tr>\n");
-        result.getDiff().forEach((key, diff) -> {
+        result.getDifferences().forEach((key, diff) -> {
             html.append("<tr><td>").append(key).append("</td><td>").append(diff).append("</td></tr>\n");
         });
         html.append("</table>\n</body>\n</html>");
