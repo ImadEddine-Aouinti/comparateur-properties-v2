@@ -1,19 +1,25 @@
 package ump.PropertiesComparator.comparator;
 
-import com.sun.net.httpserver.SimpleFileServer;
-import ump.PropertiesComparator.comparator.impl.simpleDiff;
+import ump.PropertiesComparator.comparator.impl.IdenticalFilesComparator;
+import ump.PropertiesComparator.comparator.impl.SimpleDiff;
 
 public class ComparatorFactory {
     public enum ComparisonType {
         SIMPLE, ADVANCED, FUZZY
     }
-    public PropertiesComparator getComparator(ComparisonType type){
-        if(type==null){
-            throw new IllegalArgumentException("Le type de comparaison ne peut pas être null ");
+
+    public PropertiesComparator getComparator(ComparisonType type) {
+        if (type == null) {
+            throw new IllegalArgumentException("Le type de comparaison ne peut pas être null");
         }
-        switch(type){
-            case SIMPLE :
-                return new simpleDiff();
+
+        PropertiesComparator identicalComparator = new IdenticalFilesComparator();
+        PropertiesComparator simpleDiff = new SimpleDiff();
+        identicalComparator.setNext(simpleDiff);
+
+        switch (type) {
+            case SIMPLE:
+                return identicalComparator;
             default:
                 throw new IllegalArgumentException("Type de comparaison inconnu : " + type);
         }

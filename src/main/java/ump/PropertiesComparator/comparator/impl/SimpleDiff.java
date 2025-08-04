@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class simpleDiff implements PropertiesComparator {
+public class SimpleDiff implements PropertiesComparator {
     @Override
     public ComparisonResult compare(Map<String, String> props1, Map<String, String> props2, String file1, String file2) {
         Map<String, String> diff = new HashMap<>();
@@ -30,5 +30,16 @@ public class simpleDiff implements PropertiesComparator {
                 )));
 
         return new ComparisonResult(file1, file2, diff);
+    }
+
+    @Override
+    public Boolean verifierProperties(Map<String,String> props1,Map<String,String> props2){
+        return props1.equals(props2) ;
+    }
+
+    private PropertiesComparator next ;
+    @Override
+    public void setNext(PropertiesComparator next) {
+        this.next = next ;
     }
 }

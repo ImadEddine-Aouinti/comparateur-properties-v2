@@ -3,6 +3,7 @@ package ump.PropertiesComparator.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ComparisonResult implements Serializable {
@@ -17,13 +18,17 @@ public class ComparisonResult implements Serializable {
     @JsonProperty("differences")
     private Map<String, String> differences;
 
+    @JsonProperty("areIdentical")
+    private boolean areIdentical;
+
     @JsonCreator
     public ComparisonResult(@JsonProperty("file1") String file1,
                             @JsonProperty("file2") String file2,
                             @JsonProperty("differences") Map<String, String> differences) {
         this.file1 = file1;
         this.file2 = file2;
-        this.differences = differences;
+        this.differences = (differences != null) ? differences : new HashMap<>();
+        this.areIdentical = (differences == null || differences.isEmpty());
     }
 
     public String getFile1() {
@@ -50,8 +55,19 @@ public class ComparisonResult implements Serializable {
         this.differences = differences;
     }
 
+    public boolean areIdentical() {
+        return areIdentical;
+    }
+
+    public void setIdentical(boolean areIdentical) {
+        this.areIdentical = areIdentical;
+    }
+
     @Override
     public String toString() {
+        if (areIdentical) {
+            return "ComparisonResult{files='" + file1 + "' and '" + file2 + "' are identical}";
+        }
         return "ComparisonResult{" +
                 "file1='" + file1 + '\'' +
                 ", file2='" + file2 + '\'' +
