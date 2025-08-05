@@ -9,14 +9,22 @@ import java.util.stream.Collectors;
 public class JSONFormat implements ReportFormatter {
     @Override
     public String format(ComparisonResult result) {
-        String differencesJson = result.getDifferences().entrySet().stream()
-                .map(entry -> "\"" + entry.getKey() + "\":\"" + entry.getValue() + "\"")
-                .collect(Collectors.joining(","));
+        StringBuilder json = new StringBuilder();
+        json.append("{");
 
-        return "{"
-                + "\"file1\":\"" + result.getFile1() + "\","
-                + "\"file2\":\"" + result.getFile2() + "\","
-                + "\"differences\":{" + differencesJson + "}"
-                + "}";
+        json.append("\"file1\":\"").append(result.getFile1()).append("\",");
+        json.append("\"file2\":\"").append(result.getFile2()).append("\",");
+
+        if (result.areIdentical()) {
+            json.append("\"status\":\"identical\"");
+        } else {
+            String differencesJson = result.getDifferences().entrySet().stream()
+                    .map(entry -> "\"" + entry.getKey() + "\":\"" + entry.getValue() + "\"")
+                    .collect(Collectors.joining(","));
+            json.append("\"differences\":{").append(differencesJson).append("}");
+        }
+
+        json.append("}");
+        return json.toString();
     }
 }
