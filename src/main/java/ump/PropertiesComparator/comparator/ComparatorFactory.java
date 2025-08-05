@@ -1,5 +1,6 @@
 package ump.PropertiesComparator.comparator;
 
+import ump.PropertiesComparator.comparator.impl.AdvancedDiff;
 import ump.PropertiesComparator.comparator.impl.IdenticalFilesComparator;
 import ump.PropertiesComparator.comparator.impl.SimpleDiff;
 
@@ -15,11 +16,15 @@ public class ComparatorFactory {
 
         PropertiesComparator identicalComparator = new IdenticalFilesComparator();
         PropertiesComparator simpleDiff = new SimpleDiff();
+        PropertiesComparator advancedDiff = new AdvancedDiff();
         identicalComparator.setNext(simpleDiff);
+        simpleDiff.setNext(advancedDiff);
 
         switch (type) {
             case SIMPLE:
                 return identicalComparator;
+            case ADVANCED:
+                return advancedDiff ;
             default:
                 throw new IllegalArgumentException("Type de comparaison inconnu : " + type);
         }

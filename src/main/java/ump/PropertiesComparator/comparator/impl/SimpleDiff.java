@@ -19,7 +19,7 @@ public class SimpleDiff implements PropertiesComparator {
                 })
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
-                        entry -> props2.get(entry.getKey()) == null ? "Introuvable dans le fichier 2" : entry.getValue() + " != " + props2.get(entry.getKey())
+                        entry -> props2.get(entry.getKey()) == null ? "Introuvable dans le fichier 2" : "Difference"
                 )));
 
         diff.putAll(props2.entrySet().stream()
