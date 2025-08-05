@@ -17,6 +17,7 @@ public class ComparatorFactory {
         PropertiesComparator identicalComparator = new IdenticalFilesComparator();
         PropertiesComparator simpleDiff = new SimpleDiff();
         PropertiesComparator advancedDiff = new AdvancedDiff();
+
         identicalComparator.setNext(simpleDiff);
         simpleDiff.setNext(advancedDiff);
 
@@ -24,7 +25,7 @@ public class ComparatorFactory {
             case SIMPLE:
                 return identicalComparator;
             case ADVANCED:
-                return advancedDiff ;
+                return advancedDiff;
             default:
                 throw new IllegalArgumentException("Type de comparaison inconnu : " + type);
         }
