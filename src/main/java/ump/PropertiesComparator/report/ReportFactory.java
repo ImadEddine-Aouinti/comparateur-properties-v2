@@ -20,11 +20,6 @@ public class ReportFactory {
     );
 
     public ReportFormatter createFormat(FormatType type) {
-        if (type == null) {
-            throw new IllegalArgumentException("Le type de format ne peut pas être null");
-        }
-        return FORMATTERS.getOrDefault(type, () -> {
-            throw new IllegalArgumentException("Type de format inconnu : " + type);
-        }).get();
+        return FORMATTERS.getOrDefault(type,()->null).get();
     }
 }
