@@ -7,13 +7,13 @@ import ump.PropertiesComparator.report.ReportFactory;
 public class Cli {
     public void run(String[] args){
         if(args.length != 4){
-            System.err.println("Usage: java -jar app.jar <file1> <file2>");
+            System.err.println("Usage: java --enable-preview -jar app-jar-with-dependencies.jar <file1.properties> <file2.properties> <formatType> <comparatorType>");
             System.exit(1);
         }
         String file1 = args[0];
         String file2 = args[1];
-        String typeC = args[2];
-        String typeF = args[3];
+        String typeF = args[2];
+        String typeC = args[3];
 
         ComparatorFactory.ComparisonType ComparaionT;
         ReportFactory.FormatType FormatT ;
