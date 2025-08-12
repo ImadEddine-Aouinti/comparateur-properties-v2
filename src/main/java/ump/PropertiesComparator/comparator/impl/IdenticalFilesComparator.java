@@ -28,8 +28,4 @@ public class IdenticalFilesComparator implements PropertiesComparator {
         this.next = next;
     }
 
-    @Override
-    public Boolean verifierProperties(Map<String,String> props1,Map<String,String> props2){
-        return props1.equals(props2);
-    }
 }

@@ -36,10 +36,6 @@ public class SimpleDiff implements PropertiesComparator {
         return new ComparisonResult(file1, file2, diff);
     }
 
-    @Override
-    public Boolean verifierProperties(Map<String, String> props1, Map<String, String> props2) {
-        return props1.equals(props2);
-    }
 
     @Override
     public void setNext(PropertiesComparator next) {

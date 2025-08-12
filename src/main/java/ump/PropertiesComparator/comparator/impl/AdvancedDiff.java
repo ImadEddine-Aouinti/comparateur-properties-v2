@@ -46,10 +46,7 @@ public class AdvancedDiff implements PropertiesComparator {
         }
         return result;
     }
-    @Override
-    public Boolean verifierProperties(Map<String, String> props1, Map<String, String> props2) {
-        return props1.equals(props2);
-    }
+
 
     @Override
     public void setNext(PropertiesComparator next) {
