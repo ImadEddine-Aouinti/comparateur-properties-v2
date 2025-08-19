@@ -8,8 +8,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class AdvancedDiff implements PropertiesComparator {
-    private PropertiesComparator next ;
-
     @Override
     public ComparisonResult  compare(Map<String,String> props1, Map<String,String> props2, String file1, String file2){
         Map<String,String> diff =  new HashMap<>();
@@ -41,9 +39,6 @@ public class AdvancedDiff implements PropertiesComparator {
         ComparisonResult result = new ComparisonResult(file1, file2, diff);
         result.setIdentical(diff.isEmpty());
 
-        if (next != null && !result.areIdentical()) {
-            return next.compare(props1, props2, file1, file2);
-        }
         return result;
     }
 

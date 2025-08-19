@@ -2,7 +2,6 @@ package ump.PropertiesComparator.comparator;
 
 import ump.PropertiesComparator.comparator.impl.AdvancedDiff;
 import ump.PropertiesComparator.comparator.impl.FuzzyDiff;
-import ump.PropertiesComparator.comparator.impl.IdenticalFilesComparator;
 import ump.PropertiesComparator.comparator.impl.SimpleDiff;
 
 import java.util.EnumMap;

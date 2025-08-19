@@ -49,33 +49,6 @@ public class ComparisonMetadata implements Serializable {
         this.result = result;
     }
 
-    public String getComparisonId() {
-        return comparisonId;
-    }
-
-    public String getFile1() {
-        return file1;
-    }
-
-    public String getFile2() {
-        return file2;
-    }
-
-    public String getComparatorType() {
-        return comparatorType;
-    }
-
-    public String getFormatType() {
-        return formatType;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public ComparisonResult getResult() {
-        return result;
-    }
 
     @Override
     public String toString() {
