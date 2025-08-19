@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class SimpleDiff implements PropertiesComparator {
-    private PropertiesComparator next;
 
     @Override
     public ComparisonResult compare(Map<String, String> props1, Map<String, String> props2, String file1, String file2) {
@@ -36,9 +35,4 @@ public class SimpleDiff implements PropertiesComparator {
         return new ComparisonResult(file1, file2, diff);
     }
 
-
-    @Override
-    public void setNext(PropertiesComparator next) {
-        this.next = next;
-    }
 }

@@ -47,9 +47,4 @@ public class AdvancedDiff implements PropertiesComparator {
         return result;
     }
 
-
-    @Override
-    public void setNext(PropertiesComparator next) {
-        this.next = next;
-    }
 }

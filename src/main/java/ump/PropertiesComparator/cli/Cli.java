@@ -21,7 +21,7 @@ public class Cli {
             ComparaionT = ComparatorFactory.ComparisonType.valueOf(typeC);
             FormatT = ReportFactory.FormatType.valueOf(typeF);
         }catch (IllegalArgumentException e){
-            System.err.println("Type de comparaison ou format invalide. Types valides : SIMPLE  et HTML | XML | JSON");
+            System.err.println("Type de comparaison ou format invalide. Types valides : SIMPLE | ADVANCED | FUZZY  et HTML | XML | JSON");
             System.exit(1);
             return;
         }

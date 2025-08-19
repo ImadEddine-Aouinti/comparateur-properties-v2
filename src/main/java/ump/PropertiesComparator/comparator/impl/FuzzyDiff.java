@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class FuzzyDiff implements PropertiesComparator {
-    private PropertiesComparator next ;
     private static final double SIMILARITY_THRESHOLD=0.8 ;
 
     @Override
@@ -39,15 +38,7 @@ public class FuzzyDiff implements PropertiesComparator {
                         e-> "Introuvable dans " + file1 + ", Valeur dans " + file2 + ": " + e.getValue()
                 )));
         ComparisonResult resultat = new ComparisonResult(file1,file2,diff);
-        if(next != null && !resultat.areIdentical()){
-            return next.compare(props1,props2,file1,file2);
-        }
         return resultat;
-    }
-
-    @Override
-    public void setNext(PropertiesComparator next){
-        this.next=next;
     }
 
 
