@@ -19,14 +19,11 @@ public class JSONFormat implements ReportFormatter {
     public String format(ComparisonResult result) {
         StringBuilder consoleOutput = new StringBuilder();
         ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT); // Pour un JSON formaté lisible
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        // Ajout du titre dans la console
         consoleOutput.append(String.format("Comparaison entre %s et %s\n", result.getFile1(), result.getFile2()));
 
-        // Structure JSON
         try {
-            // Créer un objet JSON
             Map<String, Object> jsonMap = new TreeMap<>();
             jsonMap.put("file1", result.getFile1());
             jsonMap.put("file2", result.getFile2());
@@ -35,7 +32,6 @@ public class JSONFormat implements ReportFormatter {
                 jsonMap.put("status", "identical");
                 consoleOutput.append("Les fichiers sont identiques\n");
             } else {
-                // Trier les clés par ordre alphabétique
                 TreeMap<String, Difference> sortedDifferences = new TreeMap<>(result.getDifferences());
                 Map<String, Map<String, String>> differencesJson = sortedDifferences.entrySet().stream()
                         .collect(Collectors.toMap(
@@ -51,7 +47,6 @@ public class JSONFormat implements ReportFormatter {
 
                 jsonMap.put("differences", differencesJson);
 
-                // Ajouter les différences à la console
                 consoleOutput.append("Différences trouvées :\n");
                 consoleOutput.append(String.format("%-25s | %-35s | %-35s | %-10s\n", "Clé", "Valeur fichier 1", "Valeur fichier 2", "Statut"));
                 consoleOutput.append(String.format("%-25s | %-35s | %-35s | %-10s\n", "-".repeat(25), "-".repeat(35), "-".repeat(35), "-".repeat(10)));
@@ -63,7 +58,6 @@ public class JSONFormat implements ReportFormatter {
                         String value1 = diff.getValue1() != null ? diff.getValue1() : "";
                         String value2 = diff.getValue2() != null ? diff.getValue2() : "";
                         String status = diff.getStatus() != null ? diff.getStatus() : "";
-                        // Troncature pour la console
                         String truncatedValue1 = value1.length() > 35 ? value1.substring(0, 32) + "..." : value1;
                         String truncatedValue2 = value2.length() > 35 ? value2.substring(0, 32) + "..." : value2;
                         consoleOutput.append(String.format("%-25s | %-35s | %-35s | %-10s\n", key, truncatedValue1, truncatedValue2, status));
@@ -71,7 +65,6 @@ public class JSONFormat implements ReportFormatter {
                 }
             }
 
-            // Écrire le JSON dans resultats.json
             try (FileWriter writer = new FileWriter("resultats.json")) {
                 writer.write(mapper.writeValueAsString(jsonMap));
                 consoleOutput.append("Rapport JSON généré avec succès dans resultats.json\n");
