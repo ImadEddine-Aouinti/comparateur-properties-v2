@@ -28,10 +28,8 @@ public class Cli {
             System.exit(1);
         }
 
-        ComparatorFactory.ComparisonType ComparaionT;
         ReportFactory.FormatType FormatT ;
         try{
-            ComparaionT = ComparatorFactory.ComparisonType.valueOf(typeC);
             FormatT = ReportFactory.FormatType.valueOf(typeF);
         }catch (IllegalArgumentException e){
             System.err.println("Type de comparaison ou format invalide. Types valides : SIMPLE | ADVANCED | FUZZY  et HTML | XML | JSON");
@@ -44,7 +42,6 @@ public class Cli {
         String res = facade.resultat(
                 file1,
                 file2,
-                ComparaionT,
                 FormatT);
         System.out.println(res);
         System.out.println("Métadonnée sauvegardée automatiquement dans :");

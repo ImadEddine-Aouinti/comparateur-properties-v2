@@ -1,7 +1,7 @@
 package ump.PropertiesComparator.facade;
 
 import ump.PropertiesComparator.comparator.ComparatorFactory;
-import ump.PropertiesComparator.comparator.PropertiesComparator;
+import ump.PropertiesComparator.comparator.impl.DefaultComparator;
 import ump.PropertiesComparator.history.HistoryFactory;
 import ump.PropertiesComparator.history.PropertiesHistory;
 import ump.PropertiesComparator.load.PropertiesLoader;
@@ -27,12 +27,12 @@ public class ComparatorManager {
         this.history = HistoryFactory.creationHistory(HistoryFactory.SaveType.FILE);
     }
 
-    public String resultat(String file1, String file2, ComparatorFactory.ComparisonType typeC, ReportFactory.FormatType typeF) {
+    public String resultat(String file1, String file2, ReportFactory.FormatType typeF) {
         try {
             Map<String, String> props1 = load.loadProperties(file1);
             Map<String, String> props2 = load.loadProperties(file2);
 
-            PropertiesComparator comparator = compart.getComparator(typeC);
+            DefaultComparator comparator = compart.getComparator();
             ReportFormatter format = report.createFormat(typeF);
 
             ComparisonResult resultat = comparator.compare(props1, props2, file1, file2);
@@ -41,14 +41,13 @@ public class ComparatorManager {
                     UUID.randomUUID().toString(),
                     file1,
                     file2,
-                    typeC.name(),
                     typeF.name(),
                     LocalDateTime.now(),
                     resultat
             );
             history.saveComparison(metadata);
 
-            return format.format(resultat);
+            return format.format(metadata.getResult());
         } catch (Exception e) {
             throw new RuntimeException("Erreur lors de la comparaison : " + e.getMessage());
         }
