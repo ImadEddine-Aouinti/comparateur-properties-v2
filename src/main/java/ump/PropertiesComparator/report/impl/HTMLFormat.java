@@ -3,9 +3,10 @@ package ump.PropertiesComparator.report.impl;
 import ump.PropertiesComparator.model.ComparisonResult;
 import ump.PropertiesComparator.model.Difference;
 import ump.PropertiesComparator.report.ReportFormatter;
+
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.FormatProcessor;
+import java.util.TreeMap;
 
 import static java.util.FormatProcessor.FMT;
 
@@ -39,19 +40,21 @@ public class HTMLFormat implements ReportFormatter {
 
         StringBuilder tableContent = new StringBuilder();
         if (result.areIdentical()) {
-            tableContent.append("<p class=\"identical\">Les fichiers sont identiques</p>\n");
+            tableContent.append("<h2 class=\"identical\">Les fichiers sont identiques</h2>\n");
             consoleOutput.append("Les fichiers sont identiques\n");
         } else {
             tableContent.append("<table>\n");
-            tableContent.append(FMT."    <tr><th>Clé</th><th>Valeur : \{result.getFile1()} </th><th>Valeur : \{result.getFile2()}</th></tr>\n");
+            tableContent.append(FMT."    <tr><th>Clé</th><th>Valeur : \{result.getFile1()}</th><th>Valeur : \{result.getFile2()}</th><th>Statut</th></tr>\n");
             consoleOutput.append("Différences trouvées :\n");
-            consoleOutput.append("Clé | Valeur fichier 1 | Valeur fichier 2\n");
+            consoleOutput.append(String.format("%-25s | %-35s | %-35s | %-10s\n", "Clé", "Valeur fichier 1", "Valeur fichier 2", "Statut"));
+            consoleOutput.append(String.format("%-25s | %-35s | %-35s | %-10s\n", "-".repeat(25), "-".repeat(35), "-".repeat(35), "-".repeat(10)));
 
             if (result.getDifferences().isEmpty()) {
-                tableContent.append("<tr><td colspan=\"3\">Aucune différence trouvée (vérifiez la logique de comparaison)</td></tr>\n");
+                tableContent.append("<tr><td colspan=\"4\">Aucune différence trouvée (vérifiez la logique de comparaison)</td></tr>\n");
                 consoleOutput.append("Aucune différence trouvée (vérifiez la logique de comparaison)\n");
             } else {
-                result.getDifferences().forEach((key, diff) -> {
+                TreeMap<String, Difference> sortedDifferences = new TreeMap<>(result.getDifferences());
+                sortedDifferences.forEach((key, diff) -> {
                     String value1 = diff.getValue1() != null ? diff.getValue1() : "";
                     String value2 = diff.getValue2() != null ? diff.getValue2() : "";
                     String status = diff.getStatus() != null ? diff.getStatus().toUpperCase() : "";
@@ -62,9 +65,11 @@ public class HTMLFormat implements ReportFormatter {
                         default -> "";
                     };
                     tableContent.append(FMT."""
-                        <tr class="\{rowClass}"><td>\{key}</td><td>\{value1}</td><td>\{value2}</td></tr>\n
+                        <tr class="\{rowClass}"><td>\{key}</td><td>\{value1}</td><td>\{value2}</td><td>\{status}</td></tr>\n
                         """);
-                    consoleOutput.append(FMT."\{key} | \{value1} | \{value2} |\n");
+                    String truncatedValue1 = value1.length() > 35 ? value1.substring(0, 32) + "..." : value1;
+                    String truncatedValue2 = value2.length() > 35 ? value2.substring(0, 32) + "..." : value2;
+                    consoleOutput.append(String.format("%-25s | %-35s | %-35s | %-10s\n", key, truncatedValue1, truncatedValue2, status));
                 });
             }
             tableContent.append("</table>\n");
@@ -74,14 +79,12 @@ public class HTMLFormat implements ReportFormatter {
         html.append("</body>\n");
         html.append("</html>\n");
 
-        System.out.println(consoleOutput.toString());
-
         try (FileWriter writer = new FileWriter("resultat.html")) {
             writer.write(html.toString());
+            System.out.println("Rapport HTML généré avec succès dans resultat.html");
         } catch (IOException e) {
             System.err.println("Erreur lors de l'écriture du fichier HTML : " + e.getMessage());
         }
-
-        return "Rapport HTML généré avec succès dans resultat.html. Ouvrez-le dans votre navigateur pour voir les résultats.";
+        return consoleOutput.toString();
     }
 }

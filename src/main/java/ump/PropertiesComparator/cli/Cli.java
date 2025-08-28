@@ -11,14 +11,13 @@ import java.nio.file.Paths;
 
 public class Cli {
     public void run(String[] args){
-        if(args.length != 4){
-            System.err.println("Usage: java --enable-preview -jar app-jar-with-dependencies.jar <file1.properties> <file2.properties> <formatType> <comparatorType>");
+        if(args.length != 3){
+            System.err.println("Usage: java --enable-preview -jar app-jar-with-dependencies.jar <file1.properties> <file2.properties> <formatType>");
             System.exit(1);
         }
         String file1 = args[0];
         String file2 = args[1];
         String typeF = args[2];
-        String typeC = args[3];
 
         try {
             checkFile(file1);
@@ -32,7 +31,7 @@ public class Cli {
         try{
             FormatT = ReportFactory.FormatType.valueOf(typeF);
         }catch (IllegalArgumentException e){
-            System.err.println("Type de comparaison ou format invalide. Types valides : SIMPLE | ADVANCED | FUZZY  et HTML | XML | JSON");
+            System.err.println("Format invalide. Types valides :  HTML | XML | JSON");
             System.exit(1);
             return;
         }

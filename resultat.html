@@ -17,100 +17,100 @@
 <body>
 <h1>Comparaison entre file1.properties et file2.properties</h1>
 <table>
-    <tr><th>Clé</th><th>Valeur : file1.properties </th><th>Valeur : file2.properties</th></tr>
-<tr class="modified"><td>metrics.endpoint</td><td>/actuator/metrics</td><td>/metrics</td></tr>
+    <tr><th>Clé</th><th>Valeur : file1.properties</th><th>Valeur : file2.properties</th><th>Statut</th></tr>
+<tr class="modified"><td>api.auth.method</td><td>oauth2</td><td>bearer</td><td>MODIFIED</td></tr>
 
-<tr class="added"><td>db.password</td><td>securePass123</td><td></td></tr>
+<tr class="modified"><td>api.auth.token</td><td>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</td><td>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ8</td><td>MODIFIED</td></tr>
 
-<tr class="removed"><td>metrics.retention</td><td></td><td>30d</td></tr>
+<tr class="modified"><td>api.base_url</td><td>https://api.enterprise.com/v1</td><td>https://api.enterprise.com/v2</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>db.read_only</td><td>false</td><td>true</td></tr>
+<tr class="modified"><td>api.key</td><td>abc123xyz789</td><td>xyz789abc123</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>logging.level</td><td>INFO</td><td>DEBUG</td></tr>
+<tr class="modified"><td>api.retry_count</td><td>2</td><td>3</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>logging.max_size</td><td>10MB</td><td>15MB</td></tr>
+<tr class="modified"><td>app.debug</td><td>false</td><td>true</td><td>MODIFIED</td></tr>
 
-<tr class="added"><td>server.thread_pool</td><td>50</td><td></td></tr>
+<tr class="modified"><td>app.environment</td><td>production</td><td>prod</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>cache.max_entries</td><td>1000</td><td>1200</td></tr>
+<tr class="modified"><td>app.name</td><td>EnterpriseApp</td><td>EnterpriseApplication</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>server.max_connections</td><td>500</td><td>600</td></tr>
+<tr class="modified"><td>app.timeout</td><td>5000</td><td>6000</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>metrics.enabled</td><td>true</td><td>false</td></tr>
+<tr class="modified"><td>cache.host</td><td>redis.prod.server</td><td>memcached.prod.server</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>app.timeout</td><td>5000</td><td>6000</td></tr>
+<tr class="modified"><td>cache.max_entries</td><td>1000</td><td>1200</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>app.environment</td><td>production</td><td>prod</td></tr>
+<tr class="modified"><td>cache.port</td><td>6379</td><td>11211</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>feature.security.audit</td><td>true</td><td>false</td></tr>
+<tr class="modified"><td>cache.timeout</td><td>3600</td><td>7200</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>cache.timeout</td><td>3600</td><td>7200</td></tr>
+<tr class="modified"><td>cache.type</td><td>redis</td><td>memcached</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>email.password</td><td>mailPass456</td><td>mailPass789</td></tr>
+<tr class="removed"><td>db.pass</td><td></td><td>securePass456</td><td>REMOVED</td></tr>
 
-<tr class="modified"><td>api.auth.token</td><td>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</td><td>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ8</td></tr>
+<tr class="added"><td>db.password</td><td>securePass123</td><td></td><td>ADDED</td></tr>
 
-<tr class="modified"><td>email.smtp.host</td><td>smtp.enterprise.com</td><td>smtp2.enterprise.com</td></tr>
+<tr class="modified"><td>db.pool.max_wait</td><td>10000</td><td>12000</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>cache.host</td><td>redis.prod.server</td><td>memcached.prod.server</td></tr>
+<tr class="modified"><td>db.pool.size</td><td>20</td><td>25</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>server.port</td><td>8080</td><td>8443</td></tr>
+<tr class="modified"><td>db.read_only</td><td>false</td><td>true</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>email.from</td><td>support@enterprise.com</td><td>noreply@enterprise.com</td></tr>
+<tr class="modified"><td>db.schema</td><td>enterprise</td><td>enterprise_v2</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>app.debug</td><td>false</td><td>true</td></tr>
+<tr class="modified"><td>db.url</td><td>jdbc:mysql://prod.db.server:3306/enterprise_db</td><td>jdbc:mysql://prod.db.server:3306/enterprise_db_v2</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>app.name</td><td>EnterpriseApp</td><td>EnterpriseApplication</td></tr>
+<tr class="modified"><td>db.username</td><td>admin_user</td><td>administrator</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>db.url</td><td>jdbc:mysql://prod.db.server:3306/enterprise_db</td><td>jdbc:mysql://prod.db.server:3306/enterprise_db_v2</td></tr>
+<tr class="modified"><td>email.from</td><td>support@enterprise.com</td><td>noreply@enterprise.com</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>logging.file</td><td>/var/log/enterprise/app.log</td><td>/var/log/enterprise/app2.log</td></tr>
+<tr class="modified"><td>email.password</td><td>mailPass456</td><td>mailPass789</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>db.pool.max_wait</td><td>10000</td><td>12000</td></tr>
+<tr class="modified"><td>email.smtp.host</td><td>smtp.enterprise.com</td><td>smtp2.enterprise.com</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>api.retry_count</td><td>2</td><td>3</td></tr>
+<tr class="modified"><td>email.smtp.port</td><td>587</td><td>465</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>feature.experimental</td><td>false</td><td>true</td></tr>
+<tr class="removed"><td>email.ssl</td><td></td><td>true</td><td>REMOVED</td></tr>
 
-<tr class="modified"><td>server.host</td><td>prod.server.com</td><td>prod2.server.com</td></tr>
+<tr class="added"><td>email.tls</td><td>true</td><td></td><td>ADDED</td></tr>
 
-<tr class="modified"><td>api.base_url</td><td>https://api.enterprise.com/v1</td><td>https://api.enterprise.com/v2</td></tr>
+<tr class="removed"><td>email.user</td><td></td><td>mailer2</td><td>REMOVED</td></tr>
 
-<tr class="removed"><td>db.pass</td><td></td><td>securePass456</td></tr>
+<tr class="added"><td>email.username</td><td>mailer</td><td></td><td>ADDED</td></tr>
 
-<tr class="modified"><td>cache.port</td><td>6379</td><td>11211</td></tr>
+<tr class="modified"><td>feature.experimental</td><td>false</td><td>true</td><td>MODIFIED</td></tr>
 
-<tr class="removed"><td>email.ssl</td><td></td><td>true</td></tr>
+<tr class="modified"><td>feature.notifications</td><td>true</td><td>false</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>db.username</td><td>admin_user</td><td>administrator</td></tr>
+<tr class="added"><td>feature.rate_limit</td><td>100</td><td></td><td>ADDED</td></tr>
 
-<tr class="added"><td>feature.rate_limit</td><td>100</td><td></td></tr>
+<tr class="removed"><td>feature.rate_limit.max</td><td></td><td>150</td><td>REMOVED</td></tr>
 
-<tr class="modified"><td>cache.type</td><td>redis</td><td>memcached</td></tr>
+<tr class="modified"><td>feature.security.audit</td><td>true</td><td>false</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>db.pool.size</td><td>20</td><td>25</td></tr>
+<tr class="modified"><td>logging.compress</td><td>true</td><td>false</td><td>MODIFIED</td></tr>
 
-<tr class="added"><td>email.username</td><td>mailer</td><td></td></tr>
+<tr class="modified"><td>logging.file</td><td>/var/log/enterprise/app.log</td><td>/var/log/enterprise/app2.log</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>server.ssl.protocol</td><td>TLSv1.2</td><td>TLSv1.3</td></tr>
+<tr class="modified"><td>logging.level</td><td>INFO</td><td>DEBUG</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>api.key</td><td>abc123xyz789</td><td>xyz789abc123</td></tr>
+<tr class="modified"><td>logging.max_size</td><td>10MB</td><td>15MB</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>logging.compress</td><td>true</td><td>false</td></tr>
+<tr class="modified"><td>metrics.enabled</td><td>true</td><td>false</td><td>MODIFIED</td></tr>
 
-<tr class="removed"><td>feature.rate_limit.max</td><td></td><td>150</td></tr>
+<tr class="modified"><td>metrics.endpoint</td><td>/actuator/metrics</td><td>/metrics</td><td>MODIFIED</td></tr>
 
-<tr class="added"><td>email.tls</td><td>true</td><td></td></tr>
+<tr class="removed"><td>metrics.retention</td><td></td><td>30d</td><td>REMOVED</td></tr>
 
-<tr class="removed"><td>email.user</td><td></td><td>mailer2</td></tr>
+<tr class="modified"><td>server.host</td><td>prod.server.com</td><td>prod2.server.com</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>email.smtp.port</td><td>587</td><td>465</td></tr>
+<tr class="modified"><td>server.max_connections</td><td>500</td><td>600</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>api.auth.method</td><td>oauth2</td><td>bearer</td></tr>
+<tr class="modified"><td>server.port</td><td>8080</td><td>8443</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>feature.notifications</td><td>true</td><td>false</td></tr>
+<tr class="modified"><td>server.ssl.protocol</td><td>TLSv1.2</td><td>TLSv1.3</td><td>MODIFIED</td></tr>
 
-<tr class="modified"><td>db.schema</td><td>enterprise</td><td>enterprise_v2</td></tr>
+<tr class="added"><td>server.thread_pool</td><td>50</td><td></td><td>ADDED</td></tr>
 
 </table>
 </body>
