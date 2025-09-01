@@ -23,7 +23,10 @@ public class FileHistory implements PropertiesHistory {
 
     private void loadConfig() {
         Properties props = new Properties();
-        try (InputStream input = new FileInputStream("config.properties")) {
+        try (InputStream input = FileHistory.class.getClassLoader().getResourceAsStream("config.properties")) {
+            if (input == null) {
+                throw new RuntimeException("Fichier config.properties introuvable dans resources !");
+            }
             props.load(input);
             HISTORY_FILE = props.getProperty("history.file");
 
@@ -35,6 +38,7 @@ public class FileHistory implements PropertiesHistory {
             throw new RuntimeException("Erreur lors du chargement du fichier config.properties", e);
         }
     }
+
 
     private List<ComparisonMetadata> historyFromFile() {
         File file = new File(HISTORY_FILE);
