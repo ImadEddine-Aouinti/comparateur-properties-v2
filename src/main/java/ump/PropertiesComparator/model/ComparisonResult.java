@@ -16,7 +16,7 @@ public class ComparisonResult implements Serializable {
     private String file2;
 
     @JsonProperty("differences")
-    private Map<String, String> differences;
+    private Map<String, Difference> differences;
 
     @JsonProperty("areIdentical")
     private boolean areIdentical;
@@ -24,7 +24,7 @@ public class ComparisonResult implements Serializable {
     @JsonCreator
     public ComparisonResult(@JsonProperty("file1") String file1,
                             @JsonProperty("file2") String file2,
-                            @JsonProperty("differences") Map<String, String> differences) {
+                            @JsonProperty("differences") Map<String, Difference> differences) {
         this.file1 = file1;
         this.file2 = file2;
         this.differences = (differences != null) ? differences : new HashMap<>();
@@ -47,11 +47,11 @@ public class ComparisonResult implements Serializable {
         this.file2 = file2;
     }
 
-    public Map<String, String> getDifferences() {
+    public Map<String, Difference> getDifferences() {
         return differences;
     }
 
-    public void setDifferences(Map<String, String> differences) {
+    public void setDifferences(Map<String, Difference> differences) {
         this.differences = differences;
     }
 
